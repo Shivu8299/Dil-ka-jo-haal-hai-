@@ -19,15 +19,18 @@
     .polaroid-frame {
       display: inline-block;
       padding: 20px;
-      background: url("./frame1.png") no-repeat center;
-      background-size: cover;
+      /* NOTE: Removed background image link as I don't have access to 'frame1.png' */
+      /* If you use a background image, ensure it is in the correct path or comment this out. */
+      /* background: url("./frame1.png") no-repeat center; */
+      /* background-size: cover; */
+      background: white; /* Added white background for frame visibility */
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       border-radius: 12px;
       text-align: center;
     }
 
     .photo-border {
-      background: white;
+      background: #eee; /* Changed to a lighter color to distinguish from the frame */
       padding: 10px;
       border-radius: 6px;
     }
@@ -44,7 +47,9 @@
     .video-player {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      /* FIX: Changed 'cover' to 'contain' to ensure the entire vertical video is visible. 
+         This will add black bars (letterboxing) on the sides to preserve the aspect ratio. */
+      object-fit: contain; 
       border-radius: 6px;
     }
 
