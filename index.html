@@ -18,29 +18,52 @@
 
     .polaroid-frame {
       display: inline-block;
-      /* Adjusted vertical padding to account for taller video screen */
-      padding: 20px 20px 30px 20px; 
+      /* Increased padding to give ample space for the background image frame */
+      padding: 40px; 
       
-      /* FIX 1: Use the background image */
+      /* Use the background image */
       background: url("./frame1.png") no-repeat center;
-      background-size: cover;
+      background-size: 100% 100%; /* Cover the entire element with the image */
       
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       border-radius: 12px;
       text-align: center;
+      /* Set a fixed size for the entire polaroid to better contain the image */
+      width: 380px; 
+      height: auto;
+      position: relative; /* Essential for positioning the caption */
     }
 
     .photo-border {
-      background: white;
-      padding: 10px;
+      /* This element is now used just for containing the video aspect ratio */
+      position: relative;
+      background: black; /* Background behind the video, useful if video uses 'contain' */
       border-radius: 6px;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      
+      /* Aspect Ratio Hack for 9:16: Height = (16 / 9) * 100% = 177.77% */
+      /* We will define the aspect ratio on a wrapper element below */
+    }
+
+    .video-screen-wrapper {
+        width: 100%;
+        /* 9:16 aspect ratio hack: padding-bottom = 16/9 * 100% = 177.77% */
+        padding-bottom: 177.77%; 
+        height: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+        background: #000;
     }
 
     .video-screen {
-      position: relative;
-      width: 300px;
-      /* FIX 2: Taller height to match the 9:16 vertical video ratio (300 * 16 / 9 = 533.33px) */
-      height: 533px; 
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: #000;
       overflow: hidden;
       border-radius: 6px;
@@ -49,7 +72,7 @@
     .video-player {
       width: 100%;
       height: 100%;
-      /* FIX 3: Restored 'cover' to fill the space without black bars */
+      /* Use 'cover' to eliminate black bars now that the container ratio is 9:16 */
       object-fit: cover; 
       border-radius: 6px;
     }
@@ -102,15 +125,15 @@
 </head>
 <body>
   <div class="polaroid-frame">
-    <div class="photo-border">
-      <div class="video-screen">
-        <video class="video-player" controls controlslist="nodownload">
-          <source src="./Bhavya1.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="scan-lines"></div>
-        <div class="vignette"></div>
-      </div>
+    <div class="video-screen-wrapper">
+        <div class="video-screen">
+            <video class="video-player" controls controlslist="nodownload">
+              <source src="./Bhavya1.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="scan-lines"></div>
+            <div class="vignette"></div>
+        </div>
     </div>
 
     <div class="polaroid-caption">
