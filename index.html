@@ -18,27 +18,29 @@
 
     .polaroid-frame {
       display: inline-block;
-      padding: 20px;
-      /* NOTE: Removed background image link as I don't have access to 'frame1.png' */
-      /* If you use a background image, ensure it is in the correct path or comment this out. */
-      /* background: url("./frame1.png") no-repeat center; */
-      /* background-size: cover; */
-      background: white; /* Added white background for frame visibility */
+      /* Adjusted vertical padding to account for taller video screen */
+      padding: 20px 20px 30px 20px; 
+      
+      /* FIX 1: Use the background image */
+      background: url("./frame1.png") no-repeat center;
+      background-size: cover;
+      
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       border-radius: 12px;
       text-align: center;
     }
 
     .photo-border {
-      background: #eee; /* Changed to a lighter color to distinguish from the frame */
+      background: white;
       padding: 10px;
       border-radius: 6px;
     }
 
     .video-screen {
       position: relative;
-      width: 300px;   /* adjust size as you like */
-      height: 320px;
+      width: 300px;
+      /* FIX 2: Taller height to match the 9:16 vertical video ratio (300 * 16 / 9 = 533.33px) */
+      height: 533px; 
       background: #000;
       overflow: hidden;
       border-radius: 6px;
@@ -47,9 +49,8 @@
     .video-player {
       width: 100%;
       height: 100%;
-      /* FIX: Changed 'cover' to 'contain' to ensure the entire vertical video is visible. 
-         This will add black bars (letterboxing) on the sides to preserve the aspect ratio. */
-      object-fit: contain; 
+      /* FIX 3: Restored 'cover' to fill the space without black bars */
+      object-fit: cover; 
       border-radius: 6px;
     }
 
@@ -104,7 +105,7 @@
     <div class="photo-border">
       <div class="video-screen">
         <video class="video-player" controls controlslist="nodownload">
-          <source src="./Bhavya1.mp4" type="video/mp4">
+          <source src="./1000176061.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
         <div class="scan-lines"></div>
