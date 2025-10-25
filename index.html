@@ -13,27 +13,24 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: #f4e9dc; /* Page background color */
+      background: #f4e9dc; 
     }
 
     .polaroid-frame {
       display: inline-block;
-      
-      margin: 20px; /* Separates the frame from the page edges */
-      /* Adjusted padding for a taller, narrower frame */
+      margin: 20px; 
       padding: 30px; 
       
       background: url("./frame1.png") no-repeat center;
-      /* Use 100% 100% to force the background image to stretch and cover the frame */
       background-size: 100% 100%; 
       
-      background-color: white; /* Fallback color if the image fails */
+      background-color: white; 
       
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       border-radius: 12px;
       text-align: center;
       
-      /* FIX: Reduced width to suit a vertical (portrait) video */
+      /* Width for the vertical video frame */
       width: 350px; 
       height: auto;
       position: relative;
@@ -50,7 +47,7 @@
 
     .video-screen-wrapper {
         width: 100%;
-        /* FIX: 9:16 aspect ratio hack: padding-bottom = 16/9 * 100% = 177.77% */
+        /* 9:16 aspect ratio hack (16/9 * 100% = 177.77%) */
         padding-bottom: 177.77%; 
         height: 0;
         position: relative;
@@ -73,8 +70,9 @@
     .video-player {
       width: 100%;
       height: 100%;
-      /* 'cover' now works perfectly since the container has the same 9:16 ratio */
-      object-fit: cover; 
+      /* FIX: Changed 'cover' to 'contain' to ensure NO content is cut off. 
+         This will show the full 'shivshant' text. */
+      object-fit: contain; 
       border-radius: 6px;
     }
 
